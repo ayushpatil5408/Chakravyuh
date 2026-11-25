@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Production build output
+dist/
+
+# Large media reference assets (>100MB exceeds GitHub push limits)
+*.mp4
+*.opus
+
+# Local environment & system files
+.DS_Store
+*.local
+.env
+.env.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

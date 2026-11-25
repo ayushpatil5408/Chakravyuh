@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chakravyuh — Day 13, Kurukshetra (3D Experience)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Serif+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen" aria-label="Loading Chakravyuh 3D">
+    <div class="loader-inner">
+      <div class="loader-chakra" aria-hidden="true"></div>
+      <div class="loader-title">CHAKRAVYUH</div>
+      <div class="loader-subtitle">Day 13 · Kurukshetra · 3D</div>
+      <div class="loader-bar-track">
+        <div id="loader-bar-fill" class="loader-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fixed Full-Screen 3D WebGL Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Subtle Radial Vignette -->
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-- Floating 3D-Projected Name Labels for the Maharathis -->
+  <div id="labels-container" aria-hidden="true"></div>
+
+  <!-- Thin Top Progress Bar -->
+  <div id="progress-bar-track" aria-hidden="true">
+    <div id="progress-bar-fill"></div>
+  </div>
+
+  <!-- Minimal Top Navigation -->
+  <header class="top-nav">
+    <div class="nav-brand">
+      <span class="nav-brand-sanskrit">चक्रव्यूह</span>
+      <span class="nav-brand-title">CHAKRAVYUH</span>
+    </div>
+    <nav class="nav-links" aria-label="Primary">
+      <button type="button" class="nav-btn" data-modal="story">Story</button>
+      <button type="button" class="nav-btn" data-modal="warriors">Warriors</button>
+      <button type="button" class="nav-btn" data-modal="iks">IKS Notes</button>
+      <button type="button" id="shloka-toggle" class="nav-btn shloka-btn is-active" aria-pressed="true" title="Toggle Shloka Vocal Recitation">ॐ Shlokas</button>
+      <button type="button" id="audio-toggle" class="nav-btn audio-btn" aria-pressed="false" title="Toggle Mahabharat Theme">♪ Music</button>
+    </nav>
+  </header>
+
+  <!-- Background Music: Hai Katha Sangram Ki -->
+  <audio id="bgm-audio" src="./audio/mahabharat-bgm.mp3" loop preload="auto"></audio>
+
+  <!-- Cinematic 3D Stage Overlay -->
+  <main id="stage-overlay" aria-live="polite">
+    <div class="stage-text-block">
+      <div id="stage-eyebrow" class="stage-eyebrow"></div>
+      <h1 id="stage-heading" class="stage-heading"></h1>
+      <p id="stage-hindi" class="stage-hindi" lang="hi"></p>
+      <p id="stage-caption" class="stage-caption"></p>
+      <div id="stage-quote-container" class="stage-quote-container">
+        <blockquote id="stage-quote" class="stage-quote"></blockquote>
+        <button type="button" id="replay-shloka-btn" class="replay-shloka-btn" title="Replay Shloka Recitation" aria-label="Replay Shloka Recitation">
+          <span class="sound-wave-icon" aria-hidden="true">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+          </span>
+          <span class="replay-label">Replay Shloka</span>
+        </button>
+      </div>
+    </div>
+    <figure id="stage-frame" class="stage-frame" aria-hidden="true">
+      <img id="stage-frame-img" src="./scenes/scene-01.jpg" alt="" />
+      <figcaption id="stage-frame-time" class="stage-frame-time">04:18</figcaption>
+    </figure>
+  </main>
+
+  <!-- Ring Progress Dots (Right Side) -->
+  <aside id="ring-tracker" aria-label="Chakravyuh rings">
+    <div class="ring-tracker-label">VYUH</div>
+    <div class="ring-dots">
+      <span class="ring-dot" data-ring="1" title="Ring I: Elephants"></span>
+      <span class="ring-dot" data-ring="2" title="Ring II: Cavalry"></span>
+      <span class="ring-dot" data-ring="3" title="Ring III: Chariots"></span>
+      <span class="ring-dot" data-ring="4" title="Ring IV: Archers"></span>
+      <span class="ring-dot" data-ring="5" title="Ring V: Spearmen"></span>
+      <span class="ring-dot" data-ring="6" title="Ring VI: Maharathi Guard"></span>
+      <span class="ring-dot" data-ring="7" title="Ring VII: Inner Sanctum"></span>
+    </div>
+  </aside>
+
+  <!-- Scroll to Begin Hint -->
+  <div id="scroll-hint">
+    <span class="scroll-hint-text">Scroll to begin</span>
+    <span class="scroll-hint-line"></span>
+  </div>
+
+  <!-- Footer Attribution Note -->
+  <footer class="footer-note">
+    Seven-ring layout and warrior placement are artistic interpretation of the Drona Parva.
+  </footer>
+
+  <!-- Modal Drawer for Story / Warriors / IKS Notes -->
+  <div id="info-modal" class="info-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="info-modal-backdrop"></div>
+    <div class="info-modal-panel">
+      <button type="button" id="modal-close" class="modal-close" aria-label="Close modal">&times;</button>
+      <div id="modal-content" class="modal-content"></div>
+    </div>
+  </div>
+
+  <!-- Tall Scroll Container driving GSAP ScrollTrigger + Lenis -->
+  <div id="scroll-container"></div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
